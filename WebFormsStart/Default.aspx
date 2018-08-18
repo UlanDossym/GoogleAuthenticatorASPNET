@@ -13,6 +13,10 @@
     <div>
         <asp:Label ID="lblSecretCode" runat="server"></asp:Label>
     </div>
+    <p></p>
+    <div>
+        <asp:Label ID="lblCheck" runat="server"></asp:Label>
+    </div>
     <form id="form1" runat="server">
         <div>
             Name:

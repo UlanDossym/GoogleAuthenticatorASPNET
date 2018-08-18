@@ -11,12 +11,13 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
-        var setupInfo = tfa.GenerateSetupCode("MyApp", "user@example.com", "SuperSecretKeyGoesHere", 300, 300);
-        var setupInfo2 = tfa.GetCurrentPIN("SuperSecretKeyGoesHere");
+        var setupInfo = tfa.GenerateSetupCode("MyApp", "user@example.com", "SuperSuperSuperSecretKeyGoesHere", 300, 300);
+        var setupInfo2 = tfa.GetCurrentPIN("SuperSuperSuperSecretKeyGoesHere");
         lblSecretCode.Text = setupInfo2;
         string qrCodeImageUrl = setupInfo.QrCodeSetupImageUrl;
         string manualEntrySetupCode = setupInfo.ManualEntryKey;
-        bool isCorrectPIN = tfa.ValidateTwoFactorPIN("SuperSecretKeyGoesHere", "123456");
+        bool isCorrectPIN = tfa.ValidateTwoFactorPIN("SuperSuperSuperSecretKeyGoesHere", setupInfo2);
+        lblCheck.Text = isCorrectPIN.ToString();
         imgQRcode.ImageUrl = qrCodeImageUrl;
         imgQRcode.Width = 300;
         imgQRcode.Height = 300;
