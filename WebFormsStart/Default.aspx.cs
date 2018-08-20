@@ -21,10 +21,21 @@ public partial class _Default : System.Web.UI.Page
         imgQRcode.ImageUrl = qrCodeImageUrl;
         imgQRcode.Width = 300;
         imgQRcode.Height = 300;
+        //if (Request.Cookies.Get("fingerprint") == null)
+        //{
+        //    HttpCookie cookie = new HttpCookie("fingerprint");
+        //    cookie.Value = lblFingerprint.Text;
+        //    DateTime dt = DateTime.Now;
+        //    cookie.Expires = dt.AddDays(30);
+        //    Response.Cookies.Add(cookie);
+        //}
+        
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        OutputLabel.Text = NameTextBox.Text;
+        TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
+        bool isCorrectPIN = tfa.GetCurrentPIN("SuperSuperSuperSecretKeyGoesHere") == NameTextBox.Text;
+        lblCheck.Text = isCorrectPIN.ToString();
     }
 }
